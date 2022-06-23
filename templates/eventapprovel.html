@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Table 05</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/Admin/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="">SSM Alumini Portal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Index">Pending</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/approved">Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/rejected">Rejected List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/eventdisplay">Event Approval</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Event</h2>
+                </div>
+            </div>
+            <div class="row" style="margin-left:10% ;">
+
+
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Id No</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>description</th>
+                            <th>Date</th>
+                            <th>&nbsp;&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for l in val %}
+                        <tr class="alert" role="alert">
+
+
+
+                            <td>{{l[0]}}</td>
+                            <td>{{l[4]}}</td>
+                            <td>{{l[1]}}</td>
+                            <td>{{l[2]}}</td>
+                            <td>{{l[3]}}</td>
+
+
+
+
+                            {% if(l[9] == 'Approved') %}
+                            <td class="status"><span class="active">Approved</span> </td>
+                            {% elif(l[9] == 'rejected') %}
+                            <td class="status"><span class="wrong">Rejected</span></td>
+                            {% else %}
+                            <td class="status"><span class="waiting"> Pending  </span></td>
+                            {% endif %}
+                            <td></td>
+                            <td>
+                                <a href="/approveevent/{{l[0]}}" class="btn btn-outline-success">Activate</a>
+                                <a href="/rejectevent/{{l[0]}}" class="btn btn-outline-danger">Reject</a>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="/static/Admin/js/jquery.min.js"></script>
+    <script src="/static/Admin/js/popper.js"></script>
+    <script src="/static/Admin/js/bootstrap.min.js"></script>
+    <script src="/static/Admin/js/main.js"></script>
+
+</body>
+
+</html>
